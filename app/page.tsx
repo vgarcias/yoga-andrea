@@ -50,7 +50,7 @@ export default function Page() {
         <aside className="hidden w-[248px] shrink-0 flex-col border-r border-[#e4e8df] bg-[#fbfcf8] px-5 py-7 lg:flex">
           <div className="flex items-center gap-3 px-2">
             <div className="flex size-10 items-center justify-center rounded-2xl bg-[#dcecdf] text-[#527e62]"><Leaf /></div>
-            <div><p className="font-serif text-xl font-semibold tracking-tight">Casa Aúna</p><p className="text-[11px] uppercase tracking-[0.2em] text-[#8c9a92]">Yoga studio</p></div>
+            <div><p className="font-serif text-xl font-semibold tracking-tight">Andrea Wellness</p><p className="text-[11px] uppercase tracking-[0.2em] text-[#8c9a92]">Yoga studio</p></div>
           </div>
           <nav className="mt-14 flex flex-col gap-2" aria-label="Navegación principal">
             {[
@@ -65,7 +65,7 @@ export default function Page() {
 
         <div className="min-w-0 flex-1">
           <header className="flex items-center justify-between border-b border-[#e4e8df] bg-[#fbfcf8]/80 px-5 py-4 backdrop-blur-md sm:px-8 lg:px-12">
-            <button className="flex items-center gap-3 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú"><Menu className="size-5" /><span className="font-serif text-lg">Casa Aúna</span></button>
+            <button className="flex items-center gap-3 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú"><Menu className="size-5" /><span className="font-serif text-lg">Andrea Wellness</span></button>
             <div className="hidden text-sm text-[#8c9a92] lg:block">Lunes, 18 de mayo de 2026</div>
             <div className="flex items-center gap-3"><button className="relative flex size-9 items-center justify-center rounded-full text-[#7c8b82] hover:bg-[#eef3eb]" aria-label="Notificaciones"><Bell className="size-[18px]" /><span className="absolute right-1.5 top-1.5 size-1.5 rounded-full bg-[#d58c70]" /></button><div className="flex size-9 items-center justify-center rounded-full bg-[#e3cfc2] text-xs font-medium text-[#805e4d]">SG</div></div>
           </header>
@@ -86,7 +86,7 @@ export default function Page() {
                 <aside className="rounded-2xl border border-[#e4e8df] bg-[#fffefa] p-5"><div className="mb-5 flex items-center justify-between"><div><p className="text-xs font-medium uppercase tracking-[0.16em] text-[#92a097]">Tu actividad</p><h2 className="mt-1 font-serif text-xl">Últimos movimientos</h2></div><button aria-label="Buscar" className="text-[#9ba79f]"><Search className="size-4" /></button></div><div className="flex flex-col gap-4">{activity.slice(0, showAllActivity ? 3 : 2).map(({ text, time, icon: Icon, color }) => <div key={text} className="flex gap-3"><div className={`flex size-8 shrink-0 items-center justify-center rounded-full ${color === 'mint' ? 'bg-[#dcecdf] text-[#668e6f]' : color === 'lavender' ? 'bg-[#e9e4ee] text-[#766c86]' : 'bg-[#f1e1d8] text-[#9a705d]'}`}><Icon className="size-3.5" /></div><div><p className="text-xs leading-5 text-[#526158]">{text}</p><p className="text-[11px] text-[#a0aaa3]">{time}</p></div></div>)}</div><button onClick={() => setShowAllActivity(!showAllActivity)} className="mt-6 flex w-full items-center justify-center gap-1 border-t border-[#edf0ea] pt-4 text-xs font-medium text-[#668a6e]">{showAllActivity ? 'Mostrar menos' : 'Ver historial completo'} <ChevronRight className="size-3" /></button></aside>
               </div>
 
-              <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl bg-[#ece9df] px-6 py-5 sm:flex-row sm:items-center"><div className="flex items-center gap-4"><div className="flex size-10 items-center justify-center rounded-full bg-[#f7f4eb] text-[#8c866d]"><MessageCircle className="size-4" /></div><div><p className="text-sm font-medium text-[#5d6258]">¿Necesitas ayuda con tu reserva?</p><p className="text-xs text-[#8f9288]">Estamos aquí para acompañarte.</p></div></div><button className="text-xs font-medium text-[#6c806b]">Escribir a Casa Aúna <ChevronRight className="ml-1 inline size-3" /></button></div>
+              <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl bg-[#ece9df] px-6 py-5 sm:flex-row sm:items-center"><div className="flex items-center gap-4"><div className="flex size-10 items-center justify-center rounded-full bg-[#f7f4eb] text-[#8c866d]"><MessageCircle className="size-4" /></div><div><p className="text-sm font-medium text-[#5d6258]">¿Necesitas ayuda con tu reserva?</p><p className="text-xs text-[#8f9288]">Estamos aquí para acompañarte.</p></div></div><button className="text-xs font-medium text-[#6c806b]">Escribir a Andrea Wellness <ChevronRight className="ml-1 inline size-3" /></button></div>
             </div>
           </section>
         </div>

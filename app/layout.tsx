@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Casa Aúna · Tu práctica, a tu ritmo',
+  title: 'Andrea Wellness · Tu práctica, a tu ritmo',
   description: 'Reserva tus clases de yoga, consulta tu paquete y mantén tu práctica en equilibrio.',
   generator: 'v0.app',
   icons: {
