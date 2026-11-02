@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import {
+  AlertTriangle,
+  Bell,
   CalendarDays,
   ChevronDown,
   ChevronRight,
@@ -10,11 +12,14 @@ import {
   Download,
   LayoutDashboard,
   Leaf,
+  ListOrdered,
   MoreHorizontal,
   Plus,
   Search,
   Settings,
+  UserCheck,
   Users,
+  XCircle,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -34,6 +39,9 @@ const members = [
 export default function AdminPage() {
   const [activeNav, setActiveNav] = useState('Resumen')
   const [showAll, setShowAll] = useState(false)
+  const [attendanceMarked, setAttendanceMarked] = useState(false)
+  const [cancelledClass, setCancelledClass] = useState(false)
+  const [notificationsSent, setNotificationsSent] = useState(false)
 
   return (
     <main className="min-h-screen bg-[#f7f8f3] text-[#27332f]">
@@ -60,6 +68,10 @@ export default function AdminPage() {
             <div className="mt-10 grid gap-8 xl:grid-cols-[1.15fr_0.85fr]"><section className="rounded-2xl border border-[#e4e8df] bg-[#fffefa] p-5 sm:p-6"><div className="mb-6 flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.16em] text-[#92a097]">Agenda de hoy</p><h2 className="mt-1 font-serif text-2xl">Las próximas clases</h2></div><button className="text-[#9ba79f]" aria-label="Más opciones"><MoreHorizontal className="size-5" /></button></div><div className="flex flex-col gap-3">{upcoming.map((item) => <div key={item.time} className="flex items-center gap-4 rounded-xl border border-[#edf0ea] p-3"><div className={`flex size-12 shrink-0 flex-col items-center justify-center rounded-xl ${item.tone === 'sage' ? 'bg-[#dcecdf] text-[#638b6c]' : item.tone === 'lavender' ? 'bg-[#e9e4ee] text-[#766c86]' : 'bg-[#f1e1d8] text-[#9a705d]'}`}><Clock3 className="size-3.5" /><span className="mt-0.5 text-[10px] font-medium">{item.time}</span></div><div className="min-w-0 flex-1"><p className="font-serif text-lg">{item.name}</p><p className="text-xs text-[#87938b]">{item.teacher}</p></div><div className="hidden text-right sm:block"><p className="text-sm font-medium">{item.attendees}</p><p className="text-[11px] text-[#9da8a0]">inscritas</p></div><button className="rounded-full border border-[#dfe7df] px-3 py-1.5 text-xs text-[#668a6e]">Gestionar</button></div>)}</div><button className="mt-5 flex items-center gap-1 text-xs font-medium text-[#668a6e]">Ver calendario completo <ChevronRight className="size-3" /></button></section>
 
               <section className="rounded-2xl border border-[#e4e8df] bg-[#fffefa] p-5 sm:p-6"><div className="mb-6 flex items-center justify-between"><div><p className="text-xs uppercase tracking-[0.16em] text-[#92a097]">Alumnas recientes</p><h2 className="mt-1 font-serif text-2xl">Tu comunidad</h2></div><button aria-label="Buscar alumnas" className="text-[#9ba79f]"><Search className="size-4" /></button></div><div className="flex flex-col gap-4">{members.slice(0, showAll ? 4 : 3).map((member) => <div key={member.name} className="flex items-center gap-3"><div className={`flex size-9 shrink-0 items-center justify-center rounded-full text-xs font-medium ${member.color}`}>{member.initials}</div><div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{member.name}</p><p className="truncate text-xs text-[#9aa59d]">{member.package}</p></div><span className={`text-[11px] ${member.status === 'Por renovar' ? 'text-[#b78062]' : 'text-[#7d9582]'}`}>{member.status}</span></div>)}</div><button onClick={() => setShowAll(!showAll)} className="mt-6 flex items-center gap-1 border-t border-[#edf0ea] pt-4 text-xs font-medium text-[#668a6e]">{showAll ? 'Mostrar menos' : 'Ver todas las alumnas'} <ChevronRight className="size-3" /></button></section></div>
+
+            <section className="mt-8 grid gap-4 xl:grid-cols-[1.1fr_0.9fr]"><div className="rounded-2xl border border-[#e4e8df] bg-[#fffefa] p-5 sm:p-6"><div className="mb-5 flex items-start justify-between gap-4"><div><p className="text-xs uppercase tracking-[0.16em] text-[#92a097]">Control de operación</p><h2 className="mt-1 font-serif text-2xl">Aforo y asistencia</h2><p className="mt-1 text-sm text-[#87938b]">Vinyasa Flow · hoy a las 7:00 am</p></div><span className="rounded-full bg-[#e5f0e6] px-3 py-1 text-xs font-medium text-[#527e62]">8 / 12 lugares</span></div><div className="h-2 overflow-hidden rounded-full bg-[#edf0ea]"><div className="h-full w-2/3 rounded-full bg-[#6f9c79]" /></div><div className="mt-5 grid gap-3 sm:grid-cols-2"><button onClick={() => setAttendanceMarked(!attendanceMarked)} className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition-colors ${attendanceMarked ? 'border-[#b9d3bd] bg-[#e5f0e6] text-[#527e62]' : 'border-[#dfe7df] text-[#668a6e] hover:bg-[#f5f8f3]'}`}><UserCheck className="size-4" />{attendanceMarked ? 'Asistencia registrada' : 'Pasar lista'}</button><button onClick={() => setCancelledClass(!cancelledClass)} className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition-colors ${cancelledClass ? 'border-[#e5c8b8] bg-[#f9ece5] text-[#a26d55]' : 'border-[#dfe7df] text-[#9a705d] hover:bg-[#fbf4ef]'}`}><XCircle className="size-4" />{cancelledClass ? 'Clase cancelada' : 'Cancelar clase'}</button></div></div><div className="rounded-2xl border border-[#e4e8df] bg-[#fffefa] p-5 sm:p-6"><div className="mb-5 flex items-start justify-between gap-4"><div><p className="text-xs uppercase tracking-[0.16em] text-[#92a097]">Lista de espera</p><h2 className="mt-1 font-serif text-2xl">2 alumnas esperando</h2></div><ListOrdered className="size-5 text-[#9ba79f]" /></div><div className="flex flex-col gap-3"><div className="flex items-center gap-3 rounded-xl bg-[#f7f5ef] px-3 py-2.5"><span className="flex size-6 items-center justify-center rounded-full bg-[#e9e4ee] text-xs font-medium text-[#766c86]">1</span><span className="flex-1 text-sm">Valentina Ruiz</span><span className="text-xs text-[#9aa59d]">desde 6:42</span></div><div className="flex items-center gap-3 rounded-xl bg-[#f7f5ef] px-3 py-2.5"><span className="flex size-6 items-center justify-center rounded-full bg-[#e9e4ee] text-xs font-medium text-[#766c86]">2</span><span className="flex-1 text-sm">Camila Torres</span><span className="text-xs text-[#9aa59d]">desde 6:55</span></div></div><button onClick={() => setNotificationsSent(!notificationsSent)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-[#dfe7df] px-4 py-2.5 text-xs font-medium text-[#668a6e] hover:bg-[#f5f8f3]"><Bell className="size-4" />{notificationsSent ? 'Notificaciones enviadas' : 'Avisar cuando haya un lugar'}</button></div></section>
+
+            {cancelledClass && <div role="status" className="mt-4 flex items-start gap-3 rounded-2xl border border-[#e5c8b8] bg-[#f9ece5] px-4 py-3 text-sm text-[#8f624f]"><AlertTriangle className="mt-0.5 size-4 shrink-0" /><p><strong>Clase cancelada.</strong> Se liberarán los créditos de las 8 alumnas inscritas y se enviará una notificación automática.</p></div>}
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2"><div className="flex items-center justify-between rounded-2xl bg-[#ece9df] px-5 py-4"><div><p className="text-xs uppercase tracking-[0.14em] text-[#8f9288]">Resumen financiero</p><p className="mt-1 text-sm text-[#5d6258]">Consulta tus ingresos y renovaciones.</p></div><Button variant="outline" size="sm" className="rounded-full border-[#d7d8ce] bg-transparent text-[#6c806b]"><Download data-icon="inline-start" />Exportar</Button></div><div className="flex items-center justify-between rounded-2xl bg-[#e9e4ee] px-5 py-4"><div><p className="text-xs uppercase tracking-[0.14em] text-[#857a93]">¿Necesitas ayuda?</p><p className="mt-1 text-sm text-[#655e6d]">Estamos aquí para acompañarte.</p></div><button className="text-xs font-medium text-[#766c86]">Contactar soporte <ChevronRight className="ml-1 inline size-3" /></button></div></div>
           </div></section>
