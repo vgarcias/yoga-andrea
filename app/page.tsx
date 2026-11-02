@@ -54,7 +54,7 @@ export default function Page() {
           </div>
           <nav className="mt-14 flex flex-col gap-2" aria-label="Navegación principal">
             {[
-              { label: 'Inicio', icon: Home }, { label: 'Mis clases', icon: CalendarDays }, { label: 'Mi paquete', icon: Leaf }, { label: 'Mensajes', icon: MessageCircle },
+              { label: 'Inicio', icon: Home, href: '/' }, { label: 'Mis clases', icon: CalendarDays, href: '/calendario' }, { label: 'Mi paquete', icon: Leaf, href: '/paquetes' }, { label: 'Mensajes', icon: MessageCircle, href: '/mensajes' },
             ].map(({ label, icon: Icon }) => <button key={label} onClick={() => setActiveNav(label)} className={`flex items-center gap-3 rounded-xl px-3 py-3 text-left text-sm transition-colors ${activeNav === label ? 'bg-[#e5f0e6] font-medium text-[#4f7d5d]' : 'text-[#78867d] hover:bg-[#f0f4ed]'}`}><Icon className="size-[18px]" />{label}{label === 'Mensajes' && <span className="ml-auto flex size-5 items-center justify-center rounded-full bg-[#d7eadb] text-[10px] text-[#4f7d5d]">2</span>}</button>)}
           </nav>
           <div className="mt-auto flex flex-col gap-2">
